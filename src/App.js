@@ -4,7 +4,9 @@ import Header from './MyComponents/Header';
 import Todos from './MyComponents/Todos';
 import Footer from './MyComponents/Footer';
 import AddTodo from './MyComponents/AddTodo';
+import About from './MyComponents/About';
 import React, { useState, useEffect } from 'react';
+import { BrowserRouter, Routes, Route } from "react-router";
 
 function App() {
 
@@ -52,15 +54,24 @@ function App() {
   };
 
   return (
-    <>
+    <BrowserRouter>
       <Header title="My Todos List" searchBar={true} />
 
-      <AddTodo addTodo={addTodo} />
-
-      <Todos todos={todos} ondelete={ondelete} />
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <>
+              <AddTodo addTodo={addTodo} />
+              <Todos todos={todos} ondelete={ondelete} />
+            </>
+          }
+        />
+        <Route path="/about" element={<About />} />
+      </Routes>
 
       <Footer />
-    </>
+    </BrowserRouter>
   );
 }
 
