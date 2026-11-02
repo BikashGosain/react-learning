@@ -1,70 +1,93 @@
-# Getting Started with Create React App
+# Todos List
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A simple todo list app built with React while learning React fundamentals and client-side routing with React Router.
 
-## Available Scripts
+## Features
 
-In the project directory, you can run:
+- Add a todo with a title and description (blank fields are rejected)
+- Delete todos
+- Todos are saved in `localStorage`, so they persist after a page refresh
+- Multi-page navigation with React Router (Home and About)
+- Active nav link highlighting
+- Responsive navbar with a drawer menu on small screens
 
-### `npm start`
+> **Note:** the search bar in the header is UI only and is not functional yet.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Tech Stack
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- [React](https://react.dev/) 19 (Create React App)
+- [React Router](https://reactrouter.com/) 7 (declarative mode)
+- Bootstrap 6 (alpha), loaded from the jsDelivr CDN
+- `localStorage` for persistence
 
-### `npm test`
+## Routes
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+| Path     | Page  | Content                         |
+| -------- | ----- | ------------------------------- |
+| `/`      | Home  | Add Todo form and the todos list |
+| `/about` | About | About page                      |
 
-### `npm run build`
+`Header` and `Footer` are rendered outside `<Routes>`, so they appear on every page.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Getting Started
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Prerequisites
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- [Node.js](https://nodejs.org/) (LTS recommended) and npm
 
-### `npm run eject`
+### Installation
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+```bash
+git clone https://github.com/BikashGosain/react-learning.git
+cd react-learning
+npm install
+npm start
+```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+The app runs at [http://localhost:3000](http://localhost:3000).
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### Available Scripts
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+| Command         | Description                          |
+| --------------- | ------------------------------------ |
+| `npm start`     | Run the app in development mode      |
+| `npm run build` | Create a production build in `build/` |
+| `npm test`      | Run tests in watch mode              |
 
-## Learn More
+## Project Structure
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+```
+todos-list/
+├── public/
+│   └── index.html          # Loads Bootstrap from CDN
+└── src/
+    ├── App.js              # State, localStorage, routes
+    ├── index.js
+    └── MyComponents/
+        ├── Header.js       # Navbar with Link/NavLink
+        ├── AddTodo.js      # Add todo form
+        ├── Todos.js        # Todos list
+        ├── TodoItem.js     # Single todo card
+        ├── About.js        # About page
+        └── Footer.js
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## How It Works
 
-### Code Splitting
+- `App` holds the `todos` state and the `addTodo` / `ondelete` handlers, so todos are kept when switching between Home and About.
+- A `useEffect` writes the todos to `localStorage` whenever they change, and the initial state is read from it on load.
+- `<BrowserRouter>` wraps the app, and `NavLink` in the header handles navigation without a full page reload.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## Roadmap
 
-### Analyzing the Bundle Size
+- [ ] Make the search bar filter todos
+- [ ] Mark todos as completed
+- [ ] Edit existing todos
+- [ ] Deploy (Netlify, Vercel or GitHub Pages)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+## Author
 
-### Making a Progressive Web App
+**Bikash Gosain**
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- GitHub: [@BikashGosain](https://github.com/BikashGosain)
+- LinkedIn: [bikash-gosain](https://www.linkedin.com/in/bikash-gosain/)
